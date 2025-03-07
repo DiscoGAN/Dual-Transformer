@@ -5,7 +5,7 @@ This repository contains scripts for evaluating the trained Dual-Transformer mod
 ## Instructions for Running the Code
 
 **Reminder**: If you want to run the code for a specific lake, please execute the related script within the corresponding directory.  
-For example, to evaluate the model performance for **Lake Superior**, run `main_transformer.py` in the `Lake_Superior_trained` directory.
+For example, to evaluate the model performance for **Lake Superior**, run `main_transformer.py` inside the `Lake_Superior_trained` directory.
 
 ### Lake Superior
 - Run `main_Transformer.py` in the `Lake_Superior_trained` directory to test the pre-trained model.
