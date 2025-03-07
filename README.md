@@ -1,6 +1,6 @@
 # Dual-Transformer
 
-This repository contains scripts for evaluating the trained Dual-Transformer model for water level prediction in Lake Superior, Lake Michigan-Huron, and Lake Erie.
+This repository contains scripts for evaluating the trained Dual-Transformer model for seasonal water level prediction in Lake Superior, Lake Michigan-Huron, and Lake Erie.
 
 ## Instructions for Running the Code
 
