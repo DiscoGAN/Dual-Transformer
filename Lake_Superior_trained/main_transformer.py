@@ -116,17 +116,9 @@ dataset_new, dataset_daily_max, dataset_daily_min, max_dic, min_dic = create_dat
 dataset_new = reframeDF(dataset_new, scaler)
 
 # Perform final model testing and evaluation
-results, targets, weights_1, weights_2, results_base, results_modify = final_test(
+results, targets = final_test(
     dataset_new, wl_p, transformer_base, transformer_modify, aw, criterion, parameter_dict[wl_p.n]
 )
-
-# Save results
-np.save('./results/results_whole.npy', results)
-np.save('./results/targets_whole.npy', targets)
-np.save('./results/weights_1.npy', weights_1)
-np.save('./results/weights_2.npy', weights_2)
-np.save('./results/results_base.npy', results_base)
-np.save('./results/results_modify.npy', results_modify)
 
 # Analyze and plot prediction results on the testing dataset
 error, error_cos, error_pearson, plot_targets, plot_preds, plot_average, plot_original = test_analysis(

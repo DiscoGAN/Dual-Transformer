@@ -224,8 +224,7 @@ def final_test(dataset, parameter, model_1, model_2, model_3, criterion, paramet
 
     # Initialize lists for storing results
     fin_losss, results, targets = [], [], []
-    weights_1, weights_2 = [], []
-    results_base, results_modify = [], []
+
     # Iterate through batches for inference
     for c in range(num):    
         batch_start, batch_end = c * parameter.batch_size, (c + 1) * parameter.batch_size
@@ -248,16 +247,10 @@ def final_test(dataset, parameter, model_1, model_2, model_3, criterion, paramet
 
         # Compute weighted final predictions
         pred = weights[:, 0] * pred_1 + weights[:, 1] * pred_2
-        pred_1_weighted = weights[:, 0] * pred_1
-        pred_2_weighted = weights[:, 1] * pred_2
 
         # Store results
         results.extend(pred.detach().numpy().tolist())
-        results_base.extend(pred_1_weighted.detach().numpy().tolist())
-        results_modify.extend(pred_2_weighted.detach().numpy().tolist())
         targets.extend(target.tolist())
-        weights_1.extend(weights[:, 0].detach().numpy().tolist())
-        weights_2.extend(weights[:, 1].detach().numpy().tolist())
 
         # Compute loss
         loss = criterion(pred, target)
@@ -268,18 +261,8 @@ def final_test(dataset, parameter, model_1, model_2, model_3, criterion, paramet
     trim_size = fin_dataset.shape[0] - plus
     targets = targets[:trim_size]
     results = results[:trim_size]
-    results_base = results_base[:trim_size]
-    results_modify = results_modify[:trim_size]
-    weights_1 = weights_1[:trim_size]
-    weights_2 = weights_2[:trim_size]
 
-    # Compute error metrics
-    error = np.sqrt(sum(np.square(np.array(targets) - np.array(results))) / len(results))
-    error_cos = consine_relativity(targets, results)
-    print(error, error_cos)
-    print(len(results_modify), len(targets))
-
-    return results, targets, weights_1, weights_2, results_base, results_modify
+    return results, targets
 
 
 # Analyze and plot prediction results on the testing dataset
